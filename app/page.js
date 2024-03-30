@@ -1,7 +1,13 @@
+import Email from "@/components/Email";
+import Hero from "@/components/Hero";
+import SocialIcons from "@/components/SocialIcon";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Home
+      <Hero />
+      <SocialIcons />
+      <Email />
     </main>
   );
 }

@@ -10,3 +10,107 @@
     hsla(222, 0%, 0%, 0) 100%
   );
 }
+
+.social-icons {
+  position: fixed;
+  bottom: 0;
+  left: 4rem;
+  color: white;
+}
+.social-icons-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.social-icons-list-item {
+  font-size: var(--tlarge2);
+  transition: 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.social-icons-list-item-link {
+  padding: 10px;
+  color: var(--lightest-slate);
+  transition: 0.3s ease-in-out;
+  outline: 2px dashed transparent;
+}
+.social-icons-list-item-link:hover {
+  color: var(--theme-color);
+}
+.social-icons-list-item-link:focus {
+  outline-color: var(--theme-color);
+  transform: translateY(-4px);
+  color: var(--theme-color);
+}
+.social-icons-list-item:hover {
+  transform: translateY(-4px);
+}
+.social-icons-list-item:last-child {
+  margin-bottom: 2rem;
+}
+.social-icons-list::after {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 90px;
+  margin: 0px auto;
+  background-color: wheat;
+}
+@media screen and (max-width: 1080px) {
+  .social-icons {
+    left: 2rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .social-icons {
+    display: none;
+  }
+}
+
+.email {
+  position: fixed;
+  bottom: 0;
+  right: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: wheat;
+}
+.email-link {
+  writing-mode: vertical-rl;
+  text-decoration: none;
+  color: var(--light-slate);
+  font-family: var(--fira-code);
+  font-size: var(--tsm2);
+  letter-spacing: 0.1rem;
+  margin-bottom: 20px;
+  outline: 2px dashed transparent;
+  padding: 10px;
+  transition: 0.3s ease-in-out;
+}
+.email-link:hover {
+  color: var(--theme-color);
+}
+.email-link:focus {
+  outline-color: var(--theme-color);
+}
+.email::after {
+  content: "";
+  display: block;
+  width: 2px;
+  height: 90px;
+  margin: 0px auto;
+  background-color: wheat;
+}
+@media screen and (max-width: 1080px) {
+  .email {
+    right: 2rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .email {
+    display: none;
+  }
+}
