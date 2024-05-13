@@ -12,7 +12,7 @@ export default function Hero() {
           className="mb-8 text-[clamp(3rem,20vmin,20rem)] font-extrabold leading-none tracking-tighter"
           //   aria-label={slice.primary.first_name + " " + slice.primary.last_name}
         >
-          <span className="block text-slate-300 ">Hi, I'm</span>
+          <span className="block text-slate-300 ">Hi, I&apos;m</span>
           <span className="-mt-[.2em] block text-slate-500  ">Priyam</span>
         </h1>
         <span className="opacity-100 block bg-gradient-to-tr from-yellow-500 via-yellow-200 to-yellow-500 bg-clip-text text-2xl font-bold uppercase tracking-[.2em] text-transparent md:text-4xl">
