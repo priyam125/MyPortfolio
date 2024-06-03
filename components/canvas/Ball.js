@@ -14,7 +14,7 @@ import {
 // import css from "@/assets/Skills/css.png";
 import { TextureLoader } from "three";
 
-// import CanvasLoader from "./Loader";
+import CanvasLoader from "./Loader";
 
 // export const Ball = (props) => {
 //   console.log(props);
@@ -51,7 +51,7 @@ const BallCanvas = ({ icon, name }) => {
         <OrbitControls enableZoom={false} />
         <ambientLight intensity={2} />
         <directionalLight position={[2, 3, 1]} />
-        <Suspense fallback={null}>
+        <Suspense fallback={<CanvasLoader />}>
           <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
             <Ball
               imgUrl={icon}
