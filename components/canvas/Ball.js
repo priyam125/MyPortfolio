@@ -70,7 +70,7 @@ const BallCanvas = ({ icon, name }) => {
 export default BallCanvas;
 
 const Ball = (props) => {
-  console.log("props", props);
+  // console.log("props", props);
   const mesh = useRef(null);
   const decalRef = useRef(null);
 
