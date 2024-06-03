@@ -2,7 +2,7 @@ import Skills from "./Skills";
 
 export default function About() {
   return (
-    <div id="about" className="flex w-full flex-col my-60 mx-0">
+    <div id="about" className="flex w-full flex-col my-40 mx-0">
       <div>
         <p className="sm:text-[18px] text-[14px] text-yellow-300 uppercase tracking-wider">
           Introduction
@@ -21,6 +21,10 @@ export default function About() {
         junior developers, and delivering quality results within tight
         deadlines. Committed to continuous learning and seeking new challenges
         in a supportive work environment.
+      </div>
+      <div id="skills" className="flex flex-col mt-12">
+        <div className="text-yellow-300 uppercase text-[14px]">Skills</div>
+        <Skills />
       </div>
     </div>
   );

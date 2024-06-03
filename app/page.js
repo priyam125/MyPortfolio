@@ -13,10 +13,6 @@ export default function Home() {
       <SocialIcons />
       <Email />
       <About />
-      <div id="skills" className="flex flex-col mt-12">
-        <div className="text-yellow-300 uppercase text-[14px]">Skills</div>
-        <Skills />
-      </div>
       <Experience />
     </main>
   );
