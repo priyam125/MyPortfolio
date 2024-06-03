@@ -7,7 +7,7 @@ import { MdMenu, MdClose } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Button from "./Button";
 
-const nav_item = ["About", "Experiences", "Projects"];
+const nav_item = ["About", "Experience", "Projects"];
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
@@ -50,7 +50,7 @@ export default function NavBar() {
                   )}
                   onClick={() => setOpen(false)}
                   aria-current={pathname.includes(label) ? "page" : undefined}
-                  href={`/${label.toLowerCase()}`}
+                  href={`/#${label.toLowerCase()}`}
                 >
                   <span
                     className={clsx(
@@ -105,7 +105,7 @@ function DesktopMenu({ pathname }) {
               className={clsx(
                 "group relative block overflow-hidden rounded px-3 py-1 text-base font-bold text-slate-900"
               )}
-              href={`/${label.toLowerCase()}`}
+              href={`/#${label.toLowerCase()}`}
             >
               <span
                 className={clsx(
