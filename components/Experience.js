@@ -283,8 +283,6 @@ function Experience() {
   const underlineRef = useRef(null);
 
   useEffect(() => {
-    console.log("selected", selected);
-    console.log(underlineRef.current);
     if (underlineRef.current) {
       underlineRef.current.style.top = `${selected * 2.5}rem`;
     }
@@ -331,9 +329,6 @@ function Experience() {
           ></div>
           <div className="before:absolute before:left-0 before:content-[''] before:h-full before:w-0.5 before:bg-lightest-navy"></div>
           {experiences.map((experience, index) => {
-            console.log(experience);
-            console.log(index);
-            console.log(selected);
             return (
               <li
                 className={`exp-slider-item h-10 px-6 flex items-center cursor-pointer w-full ${

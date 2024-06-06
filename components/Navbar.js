@@ -1,11 +1,12 @@
 "use client";
 
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { MdMenu, MdClose } from "react-icons/md";
 import { usePathname } from "next/navigation";
 import Button from "./Button";
+import { AnimatePresence, motion, useMotionValue } from "framer-motion";
 
 const nav_item = ["About", "Experience", "Projects"];
 
@@ -96,39 +97,121 @@ function NameLogo({ name }) {
 }
 
 function DesktopMenu({ pathname }) {
+  const MotionLink = motion(Link);
+
+  // const motionValues = nav_item.map(() => ({
+  //   x: useMotionValue(0),
+  //   y: useMotionValue(0),
+  // }));
+
+  //function to return a value between 1 and -1 for the
+  //position of the cursor/link
+  const mapRange = (inputLower, inputUpper, outputLower, outputUpper) => {
+    const INPUT_RANGE = inputUpper - inputLower;
+    const OUTPUT_RANGE = outputUpper - outputLower;
+
+    return (value) =>
+      outputLower + (((value - inputLower) / INPUT_RANGE) * OUTPUT_RANGE || 0);
+  };
+
+  // const setTransform = (item, event, x, y) => {
+  //   const bounds = item.getBoundingClientRect();
+  //   console.log("bounds", bounds);
+  //   console.log("event.clientX", event.clientX);
+  //   console.log("event.clientY", event.clientY);
+  //   const relativeX = event.clientX - bounds.left;
+  //   const relativeY = event.clientY - bounds.top;
+  //   console.log("relativeX", relativeX);
+  //   console.log("relativeY", relativeY);
+  //   const xRange = mapRange(0, bounds.width, -1, 1)(relativeX);
+  //   const yRange = mapRange(0, bounds.height, -1, 1)(relativeY);
+  //   console.log("xRange", xRange);
+  //   console.log("yRange", yRange);
+
+  //   x.set(xRange * 10);
+  //   y.set(yRange * 10);
+  // };
+
+  useEffect(() => {
+    let items = document.querySelectorAll("ul li").forEach((item) => {
+      item.addEventListener("mousemove", (e) => {
+        const bounds = item.getBoundingClientRect();
+        console.log("bounds", bounds);
+
+        let x = e.offsetX;
+        let y = e.offsetY;
+
+        const xRange = mapRange(0, bounds.width, -1, 1)(x);
+        const yRange = mapRange(0, bounds.height, -1, 1)(y);
+
+        console.log("xRange1", xRange);
+        console.log("yRange1", yRange);
+
+        let transX = xRange * 10;
+        let transY = yRange * 10;
+
+        console.log("transX", transX);
+        console.log("transY", transY);
+
+        item.style.transform = `translateX(${transX}px) translateY(${transY}px)`;
+      });
+
+      item.addEventListener("mouseout", (e) => {
+        item.style.transform = ""; 
+      });
+    });
+  });
+
+  // const motionValues = nav_item.map(() => ({
+  //   x: useMotionValue(0),
+  //   y: useMotionValue(0),
+  // }));
+
+  // const motionValues = nav_item.map((item) => {
+  //   x: useMotionValue(0);
+  //   y: useMotionValue(0)
+  // })
+
   return (
-    <div className="relative z-50 hidden flex-row items-center gap-1 bg-transparent py-0 md:flex">
-      {nav_item.map((label, index) => (
-        <React.Fragment key={index}>
-          <li>
-            <Link
-              className={clsx(
-                "group relative block overflow-hidden rounded px-3 py-1 text-base font-bold text-slate-900"
-              )}
-              href={`/#${label.toLowerCase()}`}
-            >
+    <ul className="relative z-50 hidden flex-row items-center gap-1 bg-transparent py-0 md:flex">
+      {nav_item.map((label, index) => {
+        return (
+          <React.Fragment key={index}>
+            <AnimatePresence>
+              <motion.li>
+                <MotionLink
+                  className={clsx(
+                    "group relative block overflow-hidden rounded px-3 py-1 text-base font-bold text-slate-900"
+                  )}
+                  href={`/#${label.toLowerCase()}`}
+                >
+                  <motion.span
+                    className={clsx(
+                      "absolute inset-0 z-0 h-full rounded bg-yellow-300 transition-transform  duration-300 ease-in-out group-hover:translate-y-0",
+                      pathname.includes(label)
+                        ? "translate-y-6 bg-yellow-300"
+                        : "translate-y-8"
+                    )}
+                  />
+                  <span className="relative">{label}</span>
+                </MotionLink>
+              </motion.li>
+            </AnimatePresence>
+
+            {index < nav_item.length - 1 && (
               <span
-                className={clsx(
-                  "absolute inset-0 z-0 h-full rounded bg-yellow-300 transition-transform  duration-300 ease-in-out group-hover:translate-y-0",
-                  pathname.includes(label) ? "translate-y-6" : "translate-y-8"
-                )}
-              />
-              <span className="relative">{label}</span>
-            </Link>
-          </li>
-          {index < nav_item.length - 1 && (
-            <span
-              className="hidden text-4xl font-thin leading-[0] text-slate-400 md:inline"
-              aria-hidden="true"
-            >
-              /
-            </span>
-          )}
-        </React.Fragment>
-      ))}
+                className="hidden text-4xl font-thin leading-[0] text-slate-400 md:inline"
+                aria-hidden="true"
+              >
+                /
+              </span>
+            )}
+          </React.Fragment>
+        );
+      })}
       <li>
         <Button label={"Contact"} className="ml-3" />
       </li>
-    </div>
+    </ul>
   );
 }
