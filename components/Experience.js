@@ -274,6 +274,7 @@
 
 "use client";
 
+import { SectionWrapper } from "@/hoc";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -315,7 +316,7 @@ function Experience() {
   ];
 
   return (
-    <div className="experience mx-auto max-w-3xl my-28" id="experience">
+    <>
       <div className="title text-lightest-slate relative font-raleway">
         <h2 className="mb-8 text-4xl font-bold">
           Where I&apos;ve Worked
@@ -381,8 +382,8 @@ function Experience() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
-export default Experience;
+export default SectionWrapper(Experience, "experience");
