@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 
-// import { styles } from "../styles";
 import { staggerContainer } from "@/constants/motion";
 
 const StarWrapper = (Component, idName) =>
@@ -8,12 +7,12 @@ const StarWrapper = (Component, idName) =>
     return (
       <motion.section
         variants={staggerContainer()}
-        initial='hidden'
-        whileInView='show'
+        initial="hidden"
+        whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
         className={"mx-auto max-w-3xl my-28"}
       >
-        <span className='hash-span' id={idName}>
+        <span className="hash-span" id={idName}>
           &nbsp;
         </span>
 
