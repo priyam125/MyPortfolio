@@ -40,13 +40,13 @@ function Experience() {
   ];
 
   return (
-    <>
+    <div className="h-96">
       <div className="title text-lightest-slate relative font-raleway">
         <h2 className="mb-8 text-4xl font-bold">
           Where I&apos;ve Worked
           {/* <span className="before:content-['01.'] before:mr-2 before:text-theme-color-1 after:block after:absolute after:top-5 after:w-72 after:h-0.5 after:ml-96 after:bg-lightest-navy" /> */}
         </h2>
-      </div>
+      </div>  
       <div className="container grid grid-cols-1 md:grid-cols-[20%,80%] gap-4">
         <ul className="exp-slider list-none relative">
           <div
@@ -103,7 +103,7 @@ function Experience() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

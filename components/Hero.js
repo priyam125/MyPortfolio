@@ -3,7 +3,7 @@ import Hero1 from "@/public/hero2.jpg";
 
 export default function Hero() {
   return (
-    <div className="grid min-h-[70vh] grid-cols-1 items-center md:grid-cols-2 mb-20">
+    <div className="grid min-h-[70vh] grid-cols-1 items-center md:grid-cols-2">
       <div className="flex items-center justify-center">
         <Image src={Hero1} alt="Hero" height={500} width={500} />
       </div>

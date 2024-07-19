@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <div className="flex w-full flex-col my-40 mx-0">
+    <div className="flex w-full flex-col">
       <motion.div variants={textVariant()}>
         <p className="sm:text-[18px] text-[14px] text-yellow-300 uppercase tracking-wider">
           Introduction

@@ -11,8 +11,10 @@
   "dependencies": {
     "@react-three/drei": "^9.106.0",
     "@react-three/fiber": "^8.16.7",
+    "@svgr/webpack": "^8.1.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.24",
+    "hammerjs": "^2.0.8",
     "next": "^14.2.3",
     "react": "^18",
     "react-dom": "^18",
