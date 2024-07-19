@@ -148,6 +148,7 @@ import AdditionalImg2 from "@/public/AdditionalImg2.png";
 import AdditionalImg3 from "@/public/AdditionalImg3.png";
 import AdditionalImg4 from "@/public/AdditionalImg4.png";
 import AdditionalImg5 from "@/public/AdditionalImg5.png";
+import { SectionWrapper } from "@/hoc";
 
 const projectImages = [
   {
@@ -186,10 +187,10 @@ const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div>
+    <div className="py-20">
       <h1 className="text-white text-3xl font-bold">Projects</h1>
       {/* <Slider1 /> */}
-      <div className="flex gap-4 py-8">
+      <div className="flex flex-col md:flex-row gap-4 py-8">
         {projectImages.map((project, index) => (
           <div
             key={index}
@@ -226,7 +227,9 @@ const Projects = () => {
                   <div className="w-full h-[80%] flex justify-center">
                     <Image src={project.src} height={300} alt={project.alt} />
                   </div>
-                  <div className="h-full w-full py-2 text-center text-lg flex items-center justify-center">#1 . Foodverse</div>
+                  <div className="h-full w-full py-2 text-center text-lg flex items-center justify-center">
+                    #1 . Foodverse
+                  </div>
                 </div>
               )}
             </div>
@@ -237,4 +240,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default SectionWrapper(Projects, "Projects");

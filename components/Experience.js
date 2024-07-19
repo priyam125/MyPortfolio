@@ -40,7 +40,7 @@ function Experience() {
   ];
 
   return (
-    <div className="h-96">
+    <div className="md:h-96 py-20">
       <div className="title text-lightest-slate relative font-raleway">
         <h2 className="mb-8 text-4xl font-bold">
           Where I&apos;ve Worked
