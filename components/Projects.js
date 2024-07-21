@@ -187,7 +187,7 @@ const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="py-20">
+    <div className="py-20 mt-20" id="projects">
       <h1 className="text-white text-3xl font-bold">Projects</h1>
       {/* <Slider1 /> */}
       <div className="flex flex-col md:flex-row gap-4 py-8">
@@ -200,7 +200,7 @@ const Projects = () => {
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
-            <div id="project" className={`h-full flex relative group`}>
+            <div className={`h-full flex relative group`}>
               {hoveredIndex === index && (
                 <div className="absolute h-[20%] w-full px-2 py-1 text-gray-950">
                   <div className="font-semibold">Description</div>
@@ -219,6 +219,7 @@ const Projects = () => {
                     className="group-hover:scale-110"
                     src={project.additionalSrc}
                     height={300}
+                    width={"auto"}
                     alt={project.additionalAlt}
                   />
                 </div>
