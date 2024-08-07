@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useState } from "react";
-import Slider2 from "./Slider/Slider2/Slider2";
-import Slider1 from "./Slider/Slider1/Slider1";
+// import Slider2 from "./Slider/Slider2/Slider2";
+// import Slider1 from "./Slider/Slider1/Slider1";
 import Image from "next/image";
 import ProjectImg1 from "@/public/ProjectImg1.png";
 import ProjectImg2 from "@/public/ProjectImg2.png";
