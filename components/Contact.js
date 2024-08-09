@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Contact.css";
@@ -10,12 +10,25 @@ import FooterImg from "@/assets/Contact/footer-cropped.png";
 const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
-  async function handleSubmit(e) {
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (success) {
+        setSuccess(false);
+      } else if (error) {
+        setError(false);
+      }
+    }, 2000); // Timeout after 2 seconds
+
+    return () => clearTimeout(timeoutId);
+  }, [success, error]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
     setSuccess(false);
+    setError(false);
 
     const form = e.target;
     const response = await fetch("https://api.web3forms.com/submit", {
@@ -39,10 +52,11 @@ const Contact = () => {
       setSuccess(true);
     } else {
       toast.error("Failed to send message. Please try again.");
+      setError(true);
     }
 
     setLoading(false);
-  }
+  };
 
   return (
     <div className="flex flex-col">
@@ -78,7 +92,6 @@ const Contact = () => {
                 <label>Your Message</label>
                 <textarea
                   name="message"
-                  id=""
                   className="mt-2 w-full h-[150px] bg-transparent border border-[#ddd] outline-none rounded-md p-3 resize-none"
                   placeholder="Enter your message"
                   required
@@ -86,16 +99,18 @@ const Contact = () => {
               </div>
               <button
                 type="submit"
-                className="submit-button w-full h-[55px] border-none rounded-md cursor-pointer text-[#fff] font-semibold transition-[0.5s]"
-                disabled={loading || success}
+                className={`submit-button w-full h-[55px] border-none rounded-md cursor-pointer text-[#fff] font-semibold transition-[0.5s] button ${
+                  loading
+                    ? "animate"
+                    : success
+                    ? "animate success"
+                    : error
+                    ? "animate error"
+                    : ""
+                }`}
+                disabled={loading || success || error}
               >
-                {loading ? (
-                  <div className="loader"></div>
-                ) : success ? (
-                  <span className="checkmark">&#10003;</span>
-                ) : (
-                  "Send Message"
-                )}
+                {!loading && !success && !error ? "Send Message" : null}
               </button>
             </form>
           </div>
@@ -103,7 +118,7 @@ const Contact = () => {
         <div id="image-container" className="flex-1 hidden md:flex">
           <Image
             src={FooterImg}
-            alt="dsd"
+            alt="Footer Image"
             width={1550}
             height={600}
             className="scale-110"

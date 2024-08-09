@@ -48,7 +48,7 @@ const projectImages = [
   {
     src: ProjectImg3,
     alt: "Project 3",
-    additionalSrc: AdditionalImg8,
+    additionalSrc: AdditionalImg3,
     additionalAlt: "Additional 3",
     title: "Foodverse",
     description:
@@ -131,7 +131,7 @@ const Projects = () => {
               {hoveredIndex === index ? (
                 <div
                   id="projectImage"
-                  className="absolute -bottom-3 w-full h-[75%] flex justify-center bg-opacity-50 transform translate-y-3"
+                  className="absolute -bottom-3 w-full h-[75%] flex justify-center bg-opacity-50 transform translate-y-1"
                 >
                   <Image
                     className="group-hover:scale-100"
