@@ -48,7 +48,11 @@ const BallCanvas = ({ icon, name }) => {
   return (
     <div>
       <Canvas>
-        <OrbitControls enableZoom={false} />
+        <OrbitControls
+          enableZoom={false}
+          maxPolarAngle={Math.PI / 2}
+          minPolarAngle={Math.PI / 2}
+        />
         <ambientLight intensity={2} />
         <directionalLight position={[2, 3, 1]} />
         <Suspense fallback={<CanvasLoader />}>

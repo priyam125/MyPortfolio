@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@react-three/drei": "^9.106.0",
-    "@react-three/fiber": "^8.16.7",
+    "@react-three/fiber": "^8.16.8",
     "@svgr/webpack": "^8.1.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.24",
@@ -19,6 +19,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
+    "react-three-fiber": "^6.0.13",
     "react-toastify": "^10.0.5",
     "three": "^0.165.0"
   },

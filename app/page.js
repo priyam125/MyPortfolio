@@ -10,7 +10,7 @@ import SocialIcons from "@/components/SocialIcon";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col justify-between py-20 gap-20 md:px-60 px-8">
+    <main className="flex min-h-screen flex-col justify-between py-20 gap-20 md:px-16 lg:px-36 xl:px-60 px-8">
       <Hero />
       <SocialIcons />
       <Email />
