@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./Contact.css";
 import FooterImg from "@/assets/Contact/footer-cropped.png";
+import { SectionWrapper } from "@/hoc";
 
 const Contact = () => {
   const [loading, setLoading] = useState(false);
@@ -59,7 +60,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" id="contact">
       <h1 className="text-white text-3xl font-bold">Contact</h1>
       <div className="contact-container">
         <div id="form-container" className="flex-1">
@@ -130,4 +131,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default SectionWrapper(Contact, "contact");

@@ -87,7 +87,7 @@ const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <div className="py-20 mt-20" id="projects">
+    <div className="py-20 mt-20">
       <h1 className="text-white text-3xl font-bold">Projects</h1>
       {/* <Slider1 /> */}
       <div className="flex flex-col md:flex-row gap-4 py-8">
@@ -159,4 +159,4 @@ const Projects = () => {
   );
 };
 
-export default SectionWrapper(Projects, "Projects");
+export default SectionWrapper(Projects, "projects");
