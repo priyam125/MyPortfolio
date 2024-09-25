@@ -13,11 +13,9 @@ export default function Hero() {
   const [modelScale, setModelScale] = useState(0.7);
 
   useEffect(() => {
-    console.log();
 
     const handleResize = () => {
       const screenWidth = window.innerWidth;
-      console.log(screenWidth);
 
       if (screenWidth <= 500) {
         setModelScale(0.8);

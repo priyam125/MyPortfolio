@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { MdMenu, MdClose } from "react-icons/md";
 import { usePathname } from "next/navigation";
@@ -101,6 +101,8 @@ function MobileMenu({ open, setOpen, pathname }) {
 }
 
 function DesktopMenu({ pathname }) {
+  // const contactRef = useRef(null);
+
   return (
     <ul className="relative z-50 hidden flex-row items-center gap-1 bg-transparent py-0 md:flex">
       {NAV_ITEMS.map((label, index) => {
@@ -119,7 +121,21 @@ function DesktopMenu({ pathname }) {
           </React.Fragment>
         );
       })}
-      <Button label={"Contact"} className="ml-3" />
+      {/* <Link href="/#contact"> */}
+        <Button
+          label={"Contact"}
+          className="ml-3"
+          // onClick={() => {
+          //   // Scroll to Contact section smoothly
+          //   if (contactRef.current) {
+          //     contactRef.current.scrollIntoView({ behavior: "smooth" });
+          //   }
+          // }}
+          onClick={() => {
+            document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+          }}
+        />
+      {/* </Link> */}
     </ul>
   );
 }
@@ -129,7 +145,6 @@ function MagnetLink({ label, pathname }) {
     let items = document.querySelectorAll("ul li").forEach((item) => {
       item.addEventListener("mousemove", (e) => {
         const bounds = item.getBoundingClientRect();
-        console.log("bounds", bounds);
 
         let x = e.offsetX;
         let y = e.offsetY;
@@ -137,14 +152,8 @@ function MagnetLink({ label, pathname }) {
         const xRange = mapRange(0, bounds.width, -1, 1)(x);
         const yRange = mapRange(0, bounds.height, -1, 1)(y);
 
-        console.log("xRange1", xRange);
-        console.log("yRange1", yRange);
-
         let transX = xRange * 10;
         let transY = yRange * 10;
-
-        console.log("transX", transX);
-        console.log("transY", transY);
 
         item.style.transform = `translateX(${transX}px) translateY(${transY}px)`;
       });

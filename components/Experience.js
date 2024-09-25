@@ -16,15 +16,51 @@ function Experience() {
 
   const experiences = [
     {
+      name: "Cinco Debt Management Services",
+      role: "Software Engineer",
+      url: "",
+      start: "August 2023",
+      end: "Present",
+      shortDescription: [
+        {
+          title: "Credit Card and Loans Application Workflow",
+          description:
+            "Developed the frontend for credit card browsing, application forms,review, and payment using Nextjs, Typescript and Tailwnd css.",
+        },
+        {
+          title: "KYC Verification and Homepage Enhancements",
+          description:
+            "Implemented a secure KYC verification flow for user onboarding and collaborated on homepage updates to reflect feature changes and promotions",
+        },
+        {
+          title: "Administration Portal Development",
+          description:
+            "Worked on the administration portal for managing loan approvals, transactions, and other backend tasks.",
+        },
+      ],
+    },
+    {
       name: "Moneyhop",
       role: "Frontend Developer",
       url: "https://www.moneyhop.co/",
       start: "February 2022",
       end: "May 2023",
       shortDescription: [
-        "Successfully revamped the UI and code base of 2 existing platforms using Typescript and other modern frontend technologies.",
-        "Implemented enhanced security measures by integrating encryption protocols into request and response handling, leveraging interceptors for improved data protection.",
-        "Managed end-to-end development and deployment of four production-level systems with a focus on timely delivery of high-quality software solutions.",
+        {
+          title: "Revamped UI and codebase",
+          description:
+            "Led a successful overhaul of two existing fintech platforms, resulting in a 25% increase in user satisfaction and 60% reduction in support tickets.",
+        },
+        {
+          title: "Implemented security enhancements",
+          description:
+            "Implemented enhanced security measures by integrating encryption protocols into request and response handling, leveraging interceptors for improved data protection.",
+        },
+        {
+          title: "Managed end-to-end development",
+          description:
+            "Managed end-to-end development and deployment of four production-level systems with a focus on timely delivery of high-quality software solutions.",
+        },
       ],
     },
     {
@@ -34,7 +70,11 @@ function Experience() {
       start: "September 2021",
       end: "January 2022",
       shortDescription: [
-        "Completed two website versions from scratch within a short timeframe, launching the product with the first version and improving UI for better user experience in collaboration with a senior frontend developer.",
+        {
+          title: "Rapid development",
+          description:
+            "Completed two website versions from scratch within a 6-week deadline, demonstrating strong problem-solving and time management skills.",
+        },
       ],
     },
   ];
@@ -46,7 +86,7 @@ function Experience() {
           Where I&apos;ve Worked
           {/* <span className="before:content-['01.'] before:mr-2 before:text-theme-color-1 after:block after:absolute after:top-5 after:w-72 after:h-0.5 after:ml-96 after:bg-lightest-navy" /> */}
         </h2>
-      </div>  
+      </div>
       <div className="container grid grid-cols-1 md:grid-cols-[20%,80%] gap-4">
         <ul className="exp-slider list-none relative">
           <div
@@ -93,9 +133,10 @@ function Experience() {
                     key={index}
                     className="exp-details-list-item relative text-slate1 font-medium"
                   >
-                    <span className="before:content-['▹'] before:absolute before:left-[-20px] before:top-1 before:text-yellow-300">
-                      {description}
+                    <span className="before:content-['▹'] before:absolute before:left-[-20px] before:top-1 before:text-yellow-300 mr-1.5 underline">
+                      {`${description.title}:`}
                     </span>
+                    <span>{description.description}</span>
                   </li>
                 )
               )}
