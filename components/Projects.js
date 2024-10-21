@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import Slider2 from "./Slider/Slider2/Slider2";
 // import Slider1 from "./Slider/Slider1/Slider1";
 import Image from "next/image";
@@ -9,11 +9,13 @@ import ProjectImg2 from "@/public/ProjectImg2.png";
 import ProjectImg3 from "@/public/ProjectImg3.png";
 import ProjectImg4 from "@/public/ProjectImg4.png";
 import ProjectImg5 from "@/public/ProjectImg5.png";
+import ProjectImg6 from "@/public/ProjectImg6.png";
 import AdditionalImg1 from "@/public/AdditionalImg1.png"; // Example additional images
 import AdditionalImg2 from "@/public/AdditionalImg2.png";
 import AdditionalImg3 from "@/public/AdditionalImg3.png";
 import AdditionalImg4 from "@/public/AdditionalImg4.png";
 import AdditionalImg5 from "@/public/AdditionalImg5.png";
+import AdditionalImg6 from "@/public/AdditionalImg6.png";
 import AdditionalImg8 from "@/public/AdditionalImg8.png";
 import { SectionWrapper } from "@/hoc";
 import { IoGlobe } from "react-icons/io5";
@@ -21,6 +23,26 @@ import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
 
 const projectImages = [
+  {
+    src: ProjectImg6,
+    alt: "Project 6",
+    additionalSrc: AdditionalImg6,
+    additionalAlt: "Additional 6",
+    title: "Pixify-Ai",
+    description:
+      "A full-stack SaaS application for AI-powered image restoration, transformation, object removal, and recoloring.",
+    githubLink: "https://github.com/priyam125/PixifyAI",
+    hostedLink: "https://pixify-ai.netlify.app",
+    techStack: [
+      "Nextjs",
+      "Shadcn UI",
+      "MongoDB",
+      "Mongoose",
+      "Stripe",
+      "Zod",
+      "Cloudinary API",
+    ],
+  },
   {
     src: ProjectImg1,
     alt: "Project 1",
@@ -69,28 +91,36 @@ const projectImages = [
     hostedLink: "https://lights-out-alpha.vercel.app/",
     techStack: ["Reactjs", "MaterialUI"],
   },
-  {
-    src: ProjectImg5,
-    alt: "Project 5",
-    additionalSrc: AdditionalImg5,
-    additionalAlt: "Additional 5",
-    title: "TodoMatic",
-    description:
-      "A comprehensive todo app with data persistence to help you manage tasks efficiently",
-    githubLink: "https://github.com/priyam125/TodoMatic",
-    hostedLink: "https://todo-matic-three.vercel.app/",
-    techStack: ["Reactjs", "Redux Persist"],
-  },
+  // {
+  //   src: ProjectImg5,
+  //   alt: "Project 5",
+  //   additionalSrc: AdditionalImg5,
+  //   additionalAlt: "Additional 5",
+  //   title: "TodoMatic",
+  //   description:
+  //     "A comprehensive todo app with data persistence to help you manage tasks efficiently",
+  //   githubLink: "https://github.com/priyam125/TodoMatic",
+  //   hostedLink: "https://todo-matic-three.vercel.app/",
+  //   techStack: ["Reactjs", "Redux Persist"],
+  // },
 ];
 
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
+  useEffect(() => {
+    if(hoveredIndex) {
+      console.log("true");
+    } else console.log("false");
+    
+    
+  })
+
   return (
     <div className="py-20 mt-20">
       <h1 className="text-white text-3xl font-bold">Projects</h1>
       {/* <Slider1 /> */}
-      <div className="flex flex-col md:flex-row gap-4 py-8">
+      {/* <div className="flex flex-col md:flex-row gap-4 py-8">
         {projectImages.map((project, index) => (
           <div
             key={index}
@@ -149,6 +179,62 @@ const Projects = () => {
                   <div className="h-full w-full py-2 text-center text-lg flex items-center justify-center">
                     {project.title}
                   </div>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div> */}
+
+      <div className="flex flex-col md:flex-row gap-4 py-8">
+        {projectImages.map((project, index) => (
+          <div
+            key={index}
+            className={`h-96 bg-slate-700 rounded-md transition-all cursor-pointer duration-300 flex-1 ${hoveredIndex !== null ? 'p-0' : 'p-1'} ${
+              hoveredIndex === index ? "flex-[3]" : "flex-[1]"
+            }`}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <div className={`h-full flex flex-col w-full group`}>
+              {hoveredIndex === index ? (
+                <div className="h-full flex flex-col space-y-2 p-1">
+                  <div className="h-[40%] p-1 flex flex-col">
+                  <div className="font-semibold flex items-center justify-between">
+                    <div>{project.title}</div>
+                    <div className="flex gap-2">
+                      <Link target="_blank" href={project.githubLink}>
+                        <FaGithub />
+                      </Link>
+                      <Link target="_blank" href={project.hostedLink}>
+                        <IoGlobe />
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="text-sm">{project.description}</div>
+                  <div className="flex items-center text-sm">
+                    <div>
+                      Tech Stack:{" "}
+                      {project.techStack.map((tech, i) => (
+                        <span key={i} className="text-gray-400">
+                          {tech}
+                          {i < project.techStack.length - 1 ? ", " : ""}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  </div>
+                  <div className="h-[60%] p-1 flex flex-col justify-end">
+                    <div className=""><Image className="scale-105" src={project.additionalSrc} alt={project.additionalAlt}/></div>
+                  </div>
+
+                </div>
+              ) : (
+                <div className={`h-full flex flex-col ${hoveredIndex !== null ? 'p-0' : 'p-1'} space-y-2`}>
+                  <div className={` h-[85%] ${hoveredIndex !== null ? 'pl-2 pt-10 pb-2' : 'pl-4'} pt-4 relative flex items-center justify-center md:items-start md:justify-start`}>
+                    <Image className="" src={project.src} alt={project.alt} />
+                  </div>
+                  <div className=" h-[15%] flex items-center justify-center text-lg">{project.title}</div>
                 </div>
               )}
             </div>
