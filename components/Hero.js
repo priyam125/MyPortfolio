@@ -1,19 +1,60 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-function Model({ modelPath, scale }) {
+function Model({ modelPath, scale, mousePos }) {
   const { scene } = useGLTF(modelPath);
+
+  useFrame(() => {
+    scene.rotation.y = mousePos.x * 1.5; // Adjust the rotation multiplier
+    scene.rotation.x = -mousePos.y * 1.5; // Adjust the rotation multiplier
+    // scene.position.z = mousePos.y * 0.5;
+  });
+
   return <primitive object={scene} scale={scale} />;
 }
 
 export default function Hero() {
   const [modelScale, setModelScale] = useState(0.7);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const canvasRef = useRef();
+  const heroDivRef = useRef(); // Reference for the div containing the model
 
   useEffect(() => {
+    const handleMouseMove = (event) => {
+      // Get the bounding rectangle of the div containing the model
+      const heroDivRect = heroDivRef.current.getBoundingClientRect();
+      
+      // Calculate the mouse's distance from the div
+      const insideDiv =
+        event.clientX >= heroDivRect.left &&
+        event.clientX <= heroDivRect.right &&
+        event.clientY >= heroDivRect.top &&
+        event.clientY <= heroDivRect.bottom;
 
+      // Check if mouse is within 10-20% range of the div boundaries
+      const closeToDiv =
+        event.clientX >= heroDivRect.left - heroDivRect.width * 0.2 &&
+        event.clientX <= heroDivRect.right + heroDivRect.width * 0.2 &&
+        event.clientY >= heroDivRect.top - heroDivRect.height * 0.2 &&
+        event.clientY <= heroDivRect.bottom + heroDivRect.height * 0.2;
+
+      // Update mouse position if inside the div or close to it
+      if (insideDiv || closeToDiv) {
+        const x = (event.clientX / window.innerWidth) * 2 - 1; // Normalize between -1 and 1
+        const y = -(event.clientY / window.innerHeight) * 2 + 1; // Normalize between -1 and 1
+        setMousePos({ x, y });
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
 
@@ -57,19 +98,22 @@ export default function Hero() {
       <div className="flex-1 items-center" id="hero-image-container">
         <div
           id="hero-image--div"
+          ref={heroDivRef} // Add ref to track the bounding box of this div
           className="max-w-full w-full md:h-full h-[90%]"
         >
           <Canvas
+            ref={canvasRef}
             camera={{ position: [20, 10, 5], fov: 5 }}
             resize={{ scroll: true, debounce: { scroll: 50, resize: 50 } }}
           >
             <ambientLight intensity={0.5} />
             <directionalLight position={[0, 5, 5]} intensity={1} />
             <OrbitControls enableZoom={false} />
-            <Model modelPath="/work-station4.glb" scale={modelScale} />
+            <Model modelPath="/work-station4.glb" scale={modelScale} mousePos={mousePos} />
           </Canvas>
         </div>
       </div>
     </div>
   );
 }
+

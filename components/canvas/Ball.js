@@ -46,7 +46,7 @@ const BallCanvas = ({ icon, name }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div>
+    <div className="relative cursor-pointer">
       <Canvas>
         <OrbitControls
           enableZoom={false}
@@ -59,14 +59,14 @@ const BallCanvas = ({ icon, name }) => {
           <Float speed={1.75} rotationIntensity={1} floatIntensity={2}>
             <Ball
               imgUrl={icon}
-              name={name}
+              displayName={name}
               hovered={hovered}
               setHovered={setHovered}
             />
           </Float>
         </Suspense>
       </Canvas>
-      {hovered && <div className="tooltip">{name}</div>}
+      {hovered && <div className="text-lightest-slate font-raleway absolute bottom-[85%] left-[40%] w-28 text-xs">{name}</div>}
     </div>
   );
 };
@@ -78,7 +78,7 @@ const Ball = (props) => {
   const mesh = useRef(null);
   const decalRef = useRef(null);
 
-  const { hovered, setHovered } = props;
+  const { hovered, setHovered, displayName } = props;
 
   useFrame((state, delta) => {
     mesh.current.rotation.x += delta * 0.0;
@@ -114,20 +114,21 @@ const Ball = (props) => {
         scale={[1.5, 1.5, 1.5]}
         map={texture_1}
       />
-      {hovered && (
-        <Html position={[0, 0, 2.5]}>
+      {/* {hovered && (
+        <Html position={[50, 0, -100]}>
           <div
             style={{
               color: "white",
-              background: "black",
+              background: "red",
               padding: "2px 5px",
               borderRadius: "5px",
+              zIndex: "100"
             }}
           >
-            {name}
+            {displayName}
           </div>
         </Html>
-      )}
+      )} */}
     </mesh>
   );
 };

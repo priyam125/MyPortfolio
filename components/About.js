@@ -31,7 +31,7 @@ const About = () => {
         in a supportive work environment.
       </motion.div>
       <div id="skills" className="flex flex-col mt-12">
-        <div className="text-yellow-300 uppercase text-[14px]">Skills</div>
+        <div className="text-yellow-300 uppercase text-[18px]">Skills</div>
         <Skills />
       </div>
     </div>
