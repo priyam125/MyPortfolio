@@ -105,7 +105,7 @@ function Experience() {
                 onClick={() => setSelected(index)}
                 key={experience.name}
               >
-                <span className="flex justify-center items-center font-fira-code text-sm">
+                <span className="flex font-fira-code text-sm text-ellipsis whitespace-nowrap overflow-hidden ">
                   {experience.name}
                 </span>
               </li>

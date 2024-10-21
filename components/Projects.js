@@ -231,7 +231,7 @@ const Projects = () => {
                 </div>
               ) : (
                 <div className={`h-full flex flex-col ${hoveredIndex !== null ? 'p-0' : 'p-1'} space-y-2`}>
-                  <div className={` h-[85%] ${hoveredIndex !== null ? 'pl-2 pt-10 pb-2' : 'pl-4'} pt-4 relative flex items-center justify-center md:items-start md:justify-start`}>
+                  <div className={` h-[85%] ${hoveredIndex !== null ? 'pl-2 pt-10 pb-2' : 'pl-4 pt-4'} relative flex items-center justify-center md:items-start md:justify-start`}>
                     <Image className="" src={project.src} alt={project.alt} />
                   </div>
                   <div className=" h-[15%] flex items-center justify-center text-lg">{project.title}</div>
